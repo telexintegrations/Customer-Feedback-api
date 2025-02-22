@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify
+from flask_cors import CORS
 from app.config import Config
 
 telex_bp = Blueprint("telex", __name__)
-
+CORS(telex_bp)
 @telex_bp.route("/telex_settings", methods=["GET"])
 def telex_settings():
     """Return the Telex integration JSON settings."""
