@@ -31,7 +31,7 @@ def telex_settings():
         "label": "interval",
         "type": "text",
         "required": True,
-        "default": "\" \""
+        "default": "* * * * *"
       }
     ],
     "target_url": "https://ping.telex.im/v1/webhooks/01951578-b933-7f1a-a6db-9984ac50486f",
