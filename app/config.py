@@ -10,4 +10,4 @@ class Config:
     TELEX_API_KEY = os.environ.get("TELEX_API_KEY", "9cy2u2VF5pVxYKxcHOl8")
     
     # Application base URL
-    APP_BASE_URL = os.environ.get("APP_BASE_URL", "http://localhost:5000")
+    APP_BASE_URL = os.environ.get("APP_BASE_URL", "https://customer-feedback-api-ckii.onrender.com/all")

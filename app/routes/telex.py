@@ -16,7 +16,7 @@ def telex_settings():
       "app_name": "Customer-Feedback-Api",
       "app_description": "This customer-feedback interval integration gathers customer complaints and reviews in regard to a business or product.",
       "app_logo": "https://imgur.com/a/fXIRcLD",
-      "app_url": "127.0.0.1:5000/all",
+      "app_url": "https://customer-feedback-api-ckii.onrender.com/all",
       "background_color": "#fff"
     },
     "is_active": True,
@@ -35,7 +35,7 @@ def telex_settings():
       }
     ],
     "target_url": "https://ping.telex.im/v1/webhooks/01951578-b933-7f1a-a6db-9984ac50486f",
-    "tick_url": "127.0.0.1/all"
+    "tick_url": "https://customer-feedback-api-ckii.onrender.com/all"
   }
 }
     return jsonify(settings)
