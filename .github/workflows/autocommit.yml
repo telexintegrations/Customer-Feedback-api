@@ -1,0 +1,21 @@
+name: Auto Commit
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Runs every 5 minutes
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Configure Git
+        run: |
+          git config --global user.VirusEmp "GitHub Actions"
+          git config --global user.marvelking78@gmail.com "actions@github.com"
+
+      - name: Auto Commit & Push
+        run: |
+          git add .
+          git commit -m "Auto commit(feat) from GitHub Actions" || exit 0
+          git push
