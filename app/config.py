@@ -2,7 +2,7 @@ import os
 
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY", "01951578-b933-7f1a-a6db-9984ac50486f")
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "https://customer-feedback-api-ckii.onrender.com/all?token=9cy2u2VF5pVxYKxcHOl8")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "sqlite:///complaints.db")
     
     # Telex integration settings
     TELEX_TOKEN = os.environ.get("TELEX_TOKEN", "9cy2u2VF5pVxYKxcHOl8")
