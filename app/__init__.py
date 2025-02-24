@@ -7,10 +7,13 @@ import os
 db = SQLAlchemy()
 
 def create_app():
-    app = Flask(__name__, template_folder="Customer-Feedback-api/templates")
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))  # Get absolute path
+    templates_path = os.path.join(BASE_DIR, "/Customer-Feedback-api/templates")   # Correct path
+
+    app = Flask(__name__, template_folder=/Customer-Feedback-api/templates)
     CORS(app)
     app.config.from_object(Config)
-    
+
     db.init_app(app)
     
     with app.app_context():
