@@ -6,7 +6,7 @@ from app.config import Config
 db = SQLAlchemy()
 
 def create_app():
-    app = Flask(__name__, template_folder="C:/Users/Emper/Desktop/HNG-IT/Customer-Feedback-api/templates")
+    app = Flask(__name__, template_folder="Customer-Feedback-api/templates")
     CORS(app)
     app.config.from_object(Config)
     
