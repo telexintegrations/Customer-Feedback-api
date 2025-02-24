@@ -9,7 +9,10 @@ def submit_complaint():
     if request.method == "POST":
         name = request.form.get("name")
         complaint = request.form.get("complaint")
-        if not complaint:
+        try:
+            response = requests.post(WEBHOOK_URL)
+        except requests.exceptions.RequestException as e:
+            print(f"Error sending webhook: {e}")
             return jsonify({"error": "Complaint is required"}), 400
         add_complaint(name, complaint)
         return jsonify({"message": "Complaint submitted successfully"}), 201
@@ -17,19 +20,10 @@ def submit_complaint():
 
 @complaints_bp.route("/all", methods=["GET"])
 def get_complaints():
-    try:
-        complaints = get_all_complaints()
-        response = requests.post(WEBHOOK_URL, json=[{
-            "id": c.id,
-            "name": c.name,
-            "complaint": c.complaint,
-            "created_at": c.created_at
-        } for c in complaints])
-    except:
-        return jsonify({"error": "Failed to fetch complaints"}), 500
-    return jsonify([{
-        "id": c.id,
-        "name": c.name,
-        "complaint": c.complaint,
-        "created_at": c.created_at
-    } for c in complaints])
+     complaints = get_all_complaints()
+     return jsonify([{ 
+         "id": c.id, 
+         "name": c.name, 
+         "complaint": c.complaint, 
+         "created_at": c.created_at } 
+         for c in complaints])
