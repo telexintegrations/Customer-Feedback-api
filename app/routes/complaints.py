@@ -18,16 +18,26 @@ def submit_complaint():
         # Add the complaint to the database
         new_complaint = add_complaint(name, complaint)
 
-        # Prepare the notification message
-        notification_message = f"New Complaint Received:\nID: {new_complaint.id}\nName: {name}\nComplaint: {complaint}"
+        # Prepare the payload for the Telex webhook
+        payload = {
+            "event_name": "new_complaint",
+            "message": f"New Complaint Received:\nID: {new_complaint.id}\nName: {name}\nComplaint: {complaint}",
+            "status": "success",
+            "username": "complaint_bot"  # Replace with your desired username
+        }
 
-        # Send the notification to the Telex webhook
+        # Send the payload to the Telex webhook
         try:
             response = requests.post(
                 WEBHOOK_URL,
-                json={"text": notification_message}
+                json=payload,
+                headers={
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
             )
             response.raise_for_status()  # Raise an error for bad status codes
+            print("Notification sent successfully:", response.json())
         except requests.exceptions.RequestException as e:
             print(f"Error sending webhook: {e}")
             return jsonify({"error": "Failed to send notification"}), 500
@@ -45,3 +55,4 @@ def get_complaints():
         "complaint": c.complaint,
         "created_at": c.created_at
     } for c in complaints])
+    
