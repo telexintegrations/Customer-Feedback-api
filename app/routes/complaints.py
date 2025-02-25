@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, render_template
 from app.services.complaint_service import add_complaint, get_all_complaints
 import requests
+import os 
 
 complaints_bp = Blueprint("complaints", __name__)
 WEBHOOK_URL = 'https://ping.telex.im/v1/webhooks/01951578-b933-7f1a-a6db-9984ac50486f'
