@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_cors import CORS
 from app.config import Config
+import os
 
 telex_bp = Blueprint("telex", __name__)
 CORS(telex_bp)
